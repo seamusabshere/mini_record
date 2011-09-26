@@ -3,19 +3,19 @@ $:.push File.expand_path("../lib", __FILE__)
 require "mini_record/version"
 
 Gem::Specification.new do |s|
-  s.name        = "mini_record"
+  s.name        = "mini_record-compat"
   s.version     = MiniRecord::VERSION
   s.authors     = ["Davide D'Agostino", "Seamus Abshere"]
   s.email       = ["d.dagostino@lipsiasoft.com", "seamus@abshere.net"]
-  s.homepage    = "https://github.com/DAddYE/mini_record"
-  s.summary     = %q{MiniRecord is a micro gem that allow you to write schema inside your model as you can do in DataMapper.}
+  s.homepage    = "https://github.com/seamusabshere/mini_record"
+  s.summary     = %q{Alternate gem published by Seamus Abshere for ActiveRecord 3.0 support. MiniRecord is a micro gem that allow you to write schema inside your model as you can do in DataMapper.}
   s.description = %q{
     With it you can add the ability to create columns outside the default schema, directly
     in your model in a similar way that you just know in others projects
     like  DataMapper or  MongoMapper.
   }.gsub(/^ {4}/, '')
 
-  s.rubyforge_project = "mini_record"
+  # s.rubyforge_project = "mini_record"
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
