@@ -39,32 +39,22 @@ module MiniRecord
           end
         end
       end
-      alias :key :col
-      alias :property :col
-      alias :field :col
-      alias :attribute :col
 
       def reset_table_definition!
         @_table_definition = nil
       end
-      alias :reset_schema! :reset_table_definition!
 
       def schema
         reset_table_definition!
         yield table_definition
         table_definition
       end
-      alias :keys :schema
-      alias :properties :schema
-      alias :fields :schema
-      alias :attributes :schema
 
       def add_index(column_name, options={})
         index_name = shorten_index_name connection.index_name(table_name, :column => column_name)
         indexes[index_name] = options.merge(:column => column_name, :name => index_name)
         index_name
       end
-      alias :index :add_index
 
       def connection?
         !!connection

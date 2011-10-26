@@ -44,8 +44,6 @@ end
 Post.auto_upgrade!
 ```
 
-If you don't like `col` there are also few aliases: `key, field, property, attribute`
-
 Instead of `:as => :my_type` you can use `:type => :my_type`
 
 Option `:as` or `:type` if not provided is `:string` by default, you can use all ActiveRecord types:

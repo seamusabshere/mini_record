@@ -10,30 +10,30 @@ end
 class Post < ActiveRecord::Base
   include SpecHelper
 
-  key :title
-  key :body
-  key :category, :as => :references
+  col :title
+  col :body
+  col :category, :as => :references
   belongs_to :category
 end
 
 class Category < ActiveRecord::Base
   include SpecHelper
 
-  key :title
+  col :title
   has_many :posts
 end
 
 class Animal < ActiveRecord::Base
   include SpecHelper
 
-  key :name, :index => true
-  index :id
+  col :name, :index => true
+  add_index :id
 end
 
 class Pet < ActiveRecord::Base
   include SpecHelper
 
-  key :name, :index => true
+  col :name, :index => true
 end
 class Dog < Pet; end
 class Cat < Pet; end
