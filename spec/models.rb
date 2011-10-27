@@ -47,6 +47,14 @@ class Vegetable < ActiveRecord::Base
   col :common_name
 end
 
+class Gender < ActiveRecord::Base
+  include SpecHelper
+
+  set_primary_key :name
+  
+  col :name
+end
+
 class User < ActiveRecord::Base
   include SpecHelper
   col :name

@@ -194,6 +194,11 @@ describe MiniRecord do
     end
   end
   
+  it 'properly creates tables with one column, a string primary key' do
+    Gender.auto_upgrade!
+    Gender.column_names.must_equal ['name']
+  end
+  
   it 'is idempotent' do
     ActiveRecord::Base.descendants.each do |active_record|
       active_record.auto_upgrade!

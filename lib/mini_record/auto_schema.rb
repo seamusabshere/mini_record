@@ -104,21 +104,26 @@ module MiniRecord
           
           # avoid using connection.create_table because in 3.0.x it ignores table_definition
           # and it also is too eager about adding a primary key column
-          create_sql = "CREATE TABLE "
-          create_sql << "#{quoted_table_name} ("
-          create_sql << table_definition.to_sql
-          create_sql << ") #{create_table_options}"
-          connection.execute create_sql
+          create_sql = "CREATE TABLE #{quoted_table_name} (#{table_definition.to_sql}) #{create_table_options}"
           
-          if non_standard_primary_key
-            if sqlite?
+          if sqlite?
+            connection.execute create_sql
+            if non_standard_primary_key
               add_index primary_key, :unique => true
-            elsif mysql? or postgresql?
-            # can't use add_index method because it won't let you do "PRIMARY KEY"
-              connection.execute "ALTER TABLE #{quoted_table_name} ADD PRIMARY KEY (#{quoted_primary_key})"
-            else
-              raise RuntimeError, "mini_record doesn't support non-standard primary keys for the #{connection.adapter_name} adapter!"
             end
+          elsif postgresql?
+            connection.execute create_sql
+            if non_standard_primary_key
+              # can't use add_index method because it won't let you do "PRIMARY KEY"
+              connection.execute "ALTER TABLE #{quoted_table_name} ADD PRIMARY KEY (#{quoted_primary_key})"
+            end
+          elsif mysql?
+            if non_standard_primary_key
+              # only string keys are supported
+              create_sql.sub! %r{#{connection.quote_column_name(primary_key)} varchar\(255\)([^,\)]*)}, "#{connection.quote_column_name(primary_key)} varchar(255)\\1 PRIMARY KEY"
+              create_sql.sub! 'DEFAULT NULLPRIMARY KEY', 'PRIMARY KEY'
+            end
+            connection.execute create_sql
           end
 
           reset_column_information
