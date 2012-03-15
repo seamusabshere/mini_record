@@ -216,6 +216,14 @@ describe MiniRecord do
       [ active_record.db_columns, active_record.db_indexes ].must_equal before    
     end
   end
+
+  if ENV['DB_ADAPTER'] == 'mysql'
+    it "takes custom types" do
+      MyVarCols.auto_upgrade!
+      MyVarCols.columns_hash['varb'].sql_type.must_equal 'varbinary(255)'
+      MyVarCols.columns_hash['varc'].sql_type.must_equal 'varchar(255)'
+    end
+  end
   
   private
   

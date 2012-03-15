@@ -27,7 +27,11 @@ module MiniRecord
         options = args.extract_options!
         type = options.delete(:as) || options.delete(:type) || :string
         args.each do |column_name|
-          table_definition.send(type, column_name, options)
+          if table_definition.respond_to?(type)
+            table_definition.send(type, column_name, options)
+          else
+            table_definition.column(column_name, type, options)
+          end
           column_name = table_definition.columns[-1].name
           case index_name = options.delete(:index)
             when Hash

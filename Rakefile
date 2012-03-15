@@ -30,7 +30,7 @@ task :test_each_db_adapter do
     puts
     puts "#{'*'*10} Running #{db_adapter} tests"
     puts
-    puts `bundle exec rake test TEST=spec/#{db_adapter}_spec.rb`
+    puts `bundle exec rake test DB_ADAPTER=#{db_adapter} TEST=spec/#{db_adapter}_spec.rb`
   end
 end
 

@@ -76,3 +76,11 @@ class AutomobileMakeModelYearVariant < ActiveRecord::Base
   col :make_model_year_name
   add_index :make_model_year_name
 end
+
+if ENV['DB_ADAPTER'] == 'mysql'
+  class MyVarCols < ActiveRecord::Base
+    include SpecHelper
+    col :varb, :type => 'varbinary(255)'
+    col :varc, :type => 'varchar(255)'
+  end
+end
