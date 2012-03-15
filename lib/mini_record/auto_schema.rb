@@ -126,6 +126,9 @@ module MiniRecord
             connection.execute create_sql
           end
 
+          if connection.respond_to?(:schema_cache)
+            connection.schema_cache.clear!
+          end
           reset_column_information
         end
 
@@ -208,6 +211,9 @@ module MiniRecord
         end
 
         # Reload column information
+        if connection.respond_to?(:schema_cache)
+          connection.schema_cache.clear!
+        end
         reset_column_information
       end
     end # ClassMethods
