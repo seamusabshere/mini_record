@@ -3,6 +3,10 @@ require 'bundler/setup'
 require 'mini_record'
 require 'minitest/autorun'
 
+# require 'logger'
+# ActiveRecord::Base.logger = Logger.new($stderr)
+# ActiveRecord::Base.logger.level = Logger::DEBUG
+
 module SpecHelper
   def self.included(base)
     base.extend(ClassMethods)
