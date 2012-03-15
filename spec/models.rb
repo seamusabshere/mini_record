@@ -41,7 +41,7 @@ class Cat < Pet; end
 class Vegetable < ActiveRecord::Base
   include SpecHelper
 
-  set_primary_key :latin_name
+  self.primary_key = 'latin_name'
   
   col :latin_name
   col :common_name
@@ -50,17 +50,17 @@ end
 class Gender < ActiveRecord::Base
   include SpecHelper
 
-  set_primary_key :name
+  self.primary_key = 'name'
   
   col :name
 end
 
 class User < ActiveRecord::Base
   include SpecHelper
+  self.inheritance_column = 'role' # messed up in 3.2.2
   col :name
   col :surname
   col :role
-  set_inheritance_column :role
 end
 class Administrator < User; end
 class Customer < User; end
