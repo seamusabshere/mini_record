@@ -1,7 +1,7 @@
 describe MiniRecord do
   before do
     ActiveRecord::Base.descendants.each do |active_record|
-      ActiveRecord::Base.connection.drop_table active_record.table_name if active_record.table_exists?
+      ActiveRecord::Base.connection.drop_table active_record.table_name rescue nil
     end
   end
 
