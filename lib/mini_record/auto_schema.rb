@@ -176,7 +176,9 @@ module MiniRecord
             new_attr = {}
 
             # First, check if the field type changed
-            if fields_in_schema[field].type.to_sym != fields_in_db[field].type.to_sym
+            if (fields_in_schema[field].type.to_sym != fields_in_db[field].type.to_sym) and (fields_in_schema[field].type.to_sym != fields_in_db[field].sql_type.to_sym)
+              # $stderr.puts "A(#{field}) - #{fields_in_schema[field].type.to_sym}"
+              # $stderr.puts "B(#{field}) - #{fields_in_db[field].type.to_sym} - #{fields_in_db[field].sql_type.to_sym}"
               changed = true
             end
 
@@ -190,6 +192,8 @@ module MiniRecord
             fields_in_schema[field].each_pair do |att,value|
               next if att == :type or att == :base or att == :name # special cases
               if !value.nil? && value != fields_in_db[field].send(att)
+                # $stderr.puts "C(#{att}) - #{value.inspect}"
+                # $stderr.puts "D(#{att}) - #{fields_in_db[field].send(att).inspect}"
                 new_attr[att] = value
                 changed = true
               end

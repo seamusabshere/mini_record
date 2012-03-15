@@ -217,11 +217,18 @@ describe MiniRecord do
     end
   end
 
-  if ENV['DB_ADAPTER'] == 'mysql'
+  case ENV['DB_ADAPTER']
+  when 'mysql'
     it "takes custom types" do
-      MyVarCols.auto_upgrade!
-      MyVarCols.columns_hash['varb'].sql_type.must_equal 'varbinary(255)'
-      MyVarCols.columns_hash['varc'].sql_type.must_equal 'varchar(255)'
+      CustomMysql.auto_upgrade!
+      CustomMysql.columns_hash['varb'].sql_type.must_equal 'varbinary(255)'
+      CustomMysql.columns_hash['varc'].sql_type.must_equal 'varchar(255)'
+    end
+  when 'postgresql'
+    it "takes custom types" do
+      CustomPostgresql.auto_upgrade!
+      CustomPostgresql.columns_hash['inet'].sql_type.must_equal 'inet'
+      CustomPostgresql.columns_hash['bytea'].sql_type.must_equal 'bytea'
     end
   end
   

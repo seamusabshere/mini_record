@@ -23,6 +23,9 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency "activerecord", ">=3"
+  # s.add_runtime_dependency "activerecord", "3.0.12"
+  # s.add_runtime_dependency "activerecord", "3.1.3"
+  # s.add_runtime_dependency "activerecord", "3.2.2"
 
   # dev dependencies appear to be in the Gemfile
 end
