@@ -8,12 +8,9 @@ Gem::Specification.new do |s|
   s.authors     = ["Davide D'Agostino", "Seamus Abshere"]
   s.email       = ["d.dagostino@lipsiasoft.com", "seamus@abshere.net"]
   s.homepage    = "https://github.com/seamusabshere/mini_record"
-  s.summary     = %q{Alternate gem published by Seamus Abshere for ActiveRecord 3.0 support. MiniRecord is a micro gem that allow you to write schema inside your model as you can do in DataMapper.}
-  s.description = %q{
-    With it you can add the ability to create columns outside the default schema, directly
-    in your model in a similar way that you just know in others projects
-    like  DataMapper or  MongoMapper.
-  }.gsub(/^ {4}/, '')
+  spec = %q{DEPRECATED. Use active_record_inline_schema or original mini_record gem instead.}
+  s.summary     = spec
+  s.description = spec
 
   # s.rubyforge_project = "mini_record"
 
