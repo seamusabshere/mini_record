@@ -1,5 +1,10 @@
-[![Build Status](https://secure.travis-ci.org/DAddYE/mini_record.png)](http://travis-ci.org/DAddYE/mini_record)
+# DEPRECATED
 
+The old `mini_record-compat` gem has been deprecated in favor of [`active_record_inline_schema`](https://github.com/seamusabshere/active_record_inline_schema).
+
+Please use [`active_record_inline_schema`](https://github.com/seamusabshere/active_record_inline_schema) or [original mini_record](https://github.com/DAddYE/mini_record) instead of `mini_record-compat`. 
+
+# DEPRECATED
 
 MiniRecord is a micro extension for our `ActiveRecord` gem.
 With MiniRecord you can add the ability to create columns outside the default `schema.rb`, directly
